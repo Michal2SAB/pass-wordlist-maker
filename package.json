@@ -1,0 +1,19 @@
+{
+  "name": "pass-wordlist-maker",
+  "version": "1.0.0",
+  "description": "Create a password wordlist for your target. It could be a person, or just a username. The program will get you through some questions. Answer them as best as you can and it will create the perfect wordlist for you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "passwords",
+    "wordlist",
+    "bruteforce",
+    "cracking",
+    "hacking",
+    "experimantal"
+  ],
+  "author": "Michal2SAB",
+  "license": "ISC"
+}

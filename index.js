@@ -17,11 +17,12 @@ const c = {
 const cars = "./lists/cars.txt";
 const soccer = "./lists/soccer.txt";
 const football = "./lists/football.txt";
-var uText;
+const ukslang = "./lists/ukslang.txt";
+const rappers = "./lists/rappers.txt";
 
 r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     console.log(c.c);
-    uText = c.y+username+c.c;
+    var uText = c.y+username+c.c;
     r.question(`Any passwords ${uText} used or uses${c.r}: `, password => {
         console.log(c.c);
         r.question(`Any pets/animals ${uText} likes or owns${c.r}: `, pet => {
@@ -38,9 +39,12 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
                             r.question(`Is ${uText} from the UK ? (y/n)${c.r}: `, english => {
                                 console.log(c.c);
                                 r.question(`Is ${uText} a rap fan ? (y/n)${c.r}: `, rap => {
-                                    console.log("");
-                                    generate(username, password, pet, vehicle, lover, ball, american, english, rap);
-                                    r.close();
+                                    console.log(c.c);
+                                    r.question(`Is ${uText} a car lover ? (y/n)${c.r}: `, carz => {
+                                        console.log("");
+                                        generate(username, password, pet, vehicle, lover, ball, american, english, rap, carz);
+                                        r.close();
+                                    })
                                 });
                             });
                         });
@@ -51,32 +55,104 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     });
 });
 
-async function generate (username, password, pet, vehicle, lover, ball, american, english, rap) {
-    var soccerList;
-    var footballList = [];
-    var carList = [];
+async function generate (username, password, pet, vehicle, lover, ball, carz, american, english, rap) {
+    for (x of arguments) if(x != '') expand(x);
 
-    for (x of arguments) {
-        if(x != '' && x instanceof String) {
-            x = x.replace(/ /g, "").split(',');
-            x.forEach(i => {
-                i = i.toLowerCase();
-                fs.readFile(cars, function (err, data) {
-                    if (err) throw err;
-                    data = data.toString().toLowerCase();
-                    var regex = new RegExp(`\\b${i}\\b`);
-                    if(data.match(regex)) console.log(`${i} is found in car list`);
-                });
-            });
-        };
-    };
+    if(carz) {
+        fs.readFile(cars, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
     if(ball) {
         fs.readFile(soccer, function (err, data) {
             if (err) throw err;
-            data = data.toString().split("\n");
-            soccerList = data;
-            console.log(`Added soccer list to wordlist`);
-            console.log(soccerList);
+            data = data.toString().split("\r\n");
+            expand(data);
         });
+    }
+
+    if(american) {
+        fs.readFile(football, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
+    if(english) {
+        fs.readFile(ukslang, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
+    if(rap) {
+        fs.readFile(rappers, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
+
+};
+
+function expand(words) {
+    words = words.toString().split(",");
+    var fullList = [];
+
+    var numbers = ['1', '2', '3', '12', '123', '1234', '124', '125', '12345'];
+    var replaces = {'e': '3', 'o': '0', 'i': ['l', '1'], 'l': ['i', '1'], 's': '5', 'a': '4'};
+
+    if (!Array.isArray(words)) {
+        words = words.replace(/ /g, '');
+        fullList.push(words);
+        fullList.push(words.toLowerCase());
+        fullList.push(words.toUpperCase());
+        fullList.push(words.toLowerCase().charAt(0).toUpperCase() + words.toLowerCase().slice(1));
+    } else {
+        for (word of words) {
+            word = word.replace(/ /g, '');
+            fullList.push(word);
+            fullList.push(word.toLowerCase());
+            fullList.push(word.toUpperCase());
+            fullList.push(word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1));
+            for (nr of numbers) {
+                fullList.push(word + nr);
+                fullList.push(nr + word);
+                fullList.push(word.toLowerCase() + nr);
+                fullList.push(nr + word.toLowerCase());
+                fullList.push(word.toUpperCase() + nr);
+                fullList.push(word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1) + nr);
+                fullList.push(nr + word.toUpperCase());
+                fullList.push(nr + word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1));
+            }
+            for (const [key, letter] of Object.entries(replaces)) {
+                if (Array.isArray(letter)) {
+                    for (l of letter) {
+                        word = word.replace(key.toLowerCase(), l);
+                        word = word.replace(key.toUpperCase(), l);
+
+                        fullList.push(word);
+                        fullList.push(word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1) + nr);
+                        fullList.push(word.toLowerCase());
+                        fullList.push(word.toUpperCase());
+                        fullList.push(word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1) + word.slice(1));
+                    }
+                } else {
+                    word = word.replace(key.toLowerCase(), letter);
+                    word = word.replace(key.toUpperCase(), letter);
+
+                    fullList.push(word);
+                    fullList.push(word.toLowerCase());
+                    fullList.push(word.toUpperCase());
+                    fullList.push(word.toLowerCase().charAt(0).toUpperCase() + word.toLowerCase().slice(1));
+                }
+            }      
+        }
+    }
+    var fullList = fullList.filter(function(item , index, arr){ return arr.indexOf(item)=== index})
+    for (item of fullList) {
+        fs.appendFileSync('wordlist.txt', item+'\r\n');
     }
 };

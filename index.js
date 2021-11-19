@@ -21,7 +21,7 @@ var uText;
 
 r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     console.log(c.c);
-    uText = c.y+username.split(',')[0]+c.c;
+    uText = c.y+username+c.c;
     r.question(`Any passwords ${uText} used or uses${c.r}: `, password => {
         console.log(c.c);
         r.question(`Any pets/animals ${uText} likes or owns${c.r}: `, pet => {

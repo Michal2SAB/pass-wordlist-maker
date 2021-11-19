@@ -1,1 +1,171 @@
-fill it later with football teams, players etc
+A.c. Milan
+Aguero
+Ajax
+Alaba
+Ansu
+Ansu Fati
+Arsenal
+Asensio
+Atlentico
+Atletico Madrid
+Bale
+Barca
+Barcelona
+Bayern
+Bayern Munich
+Benfica
+Benzema
+Bergkamp
+Betis
+Busquets
+Cantona
+Casemiro
+Casillas
+Cech
+Chelsea
+Cheslea
+Coutinho
+Crespo
+Cristiano
+Cristiano Ronaldo
+Cruyff
+David
+David Alaba
+Dembele
+Didier
+Didier Drogba
+Donnarumma
+Dortmund
+Drogba
+Eden
+Eden Hazard
+Emmanuel
+Emmanuel Olisadebe
+Eric
+Eric Cantona
+Essien
+Eto
+Everton
+FC
+FC Bayern
+FC Liverpool
+Fati
+Ferdinand
+Frank
+Frank Lampard
+Frenkie
+Frenkie de jong
+Gareth
+Gareth Bale
+Gerrard
+Glik
+Gotze
+Hakim ziyech
+Harry
+Harry Kane
+Havertz
+Hazard
+Hotspur
+Iniesta
+Inter
+Inter Milan
+Isco
+James
+Joshua
+Joshua Kimmich
+Juventus
+Kai
+Kai Havertz
+Kane
+Karim
+Karim Benzema
+Kepa
+Kimmich
+Kroos
+Lampard
+Leicester
+Leicester City
+Lenglet
+Lewandowski
+Lewy
+Lionel
+Lionel Messi
+Liverpool
+Luka
+Luka Modric
+Lukaku
+Luke
+Luke Shaw
+Lyon
+Madrid
+Maguire
+Manchester
+Manchester City
+Manchester United
+Maradonna
+Marcelo
+Mason
+Mason Mount
+Mbappe
+Messi
+Milan
+Militao
+Modric
+Mount
+Muller
+Munich
+NEW
+NEW
+Navas
+Neur
+Neymar
+Olisadebe
+Paris Saint
+Paris Saint German
+Pele
+Persie
+Pogba
+Real Betis
+Real Madrid
+Reece
+Reece James
+Reus
+Rio
+Rio Ferdinand
+Robert
+Robert Lewandowski
+Rodlo
+Roma
+Ronaldo
+Rooney
+Sergio
+Sergio Aguero
+Sevilla
+Shaw
+Silva
+Stegen
+Steven
+Steven Gerrard
+Swiderski
+Szczesny
+Ter
+Ter Stegen
+Thiago
+Thiago Silva
+Thomas
+Thomas Muller
+Tomasz
+Tomasz Muller
+Toni
+Toni Kroos
+Tottenham
+Tottenham Hotspur
+Umtiti
+Van
+Van Persie
+Vinicius
+Vinicius jr
+Wayne
+Wayne Rooney
+West Ham
+Xavi

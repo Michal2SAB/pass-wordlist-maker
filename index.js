@@ -32,7 +32,6 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
                 r.question(`If ${uText} has any loved ones or crushes, name them${c.r}: `, lover => {
                     console.log(c.c);
                     r.question(`Is ${uText} a soccer fan ? (y/n)${c.r}: `, ball => {
-                        if (ball === 'y') ball = true;
                         console.log(c.c);
                         r.question(`Is ${uText} a american football fan ? (y/n)${c.r}: `, american => {
                             console.log(c.c);
@@ -58,14 +57,14 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
 async function generate (username, password, pet, vehicle, lover, ball, carz, american, english, rap) {
     for (x of arguments) if(x != '') expand(x);
 
-    if(carz) {
+    if(carz === 'y') {
         fs.readFile(cars, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");
             expand(data);
         });
     }
-    if(ball) {
+    if(ball === 'y') {
         fs.readFile(soccer, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");
@@ -73,21 +72,21 @@ async function generate (username, password, pet, vehicle, lover, ball, carz, am
         });
     }
 
-    if(american) {
+    if(american === 'y') {
         fs.readFile(football, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");
             expand(data);
         });
     }
-    if(english) {
+    if(english === 'y') {
         fs.readFile(ukslang, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");
             expand(data);
         });
     }
-    if(rap) {
+    if(rap === 'y') {
         fs.readFile(rappers, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");

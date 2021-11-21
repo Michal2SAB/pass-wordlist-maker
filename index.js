@@ -19,6 +19,7 @@ const soccer = "./lists/soccer.txt";
 const football = "./lists/football.txt";
 const ukslang = "./lists/ukslang.txt";
 const rappers = "./lists/rappers.txt";
+const basketball = "./lists/basketball.txt";
 
 r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     console.log(c.c);
@@ -40,18 +41,20 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
                                 r.question(`Is ${uText} a rap fan ? (y/n)${c.r}: `, rap => {
                                     console.log(c.c);
                                     r.question(`Is ${uText} a car lover ? (y/n)${c.r}: `, carz => {
-                                        console.log("");
-                                        generate(username, password, pet, vehicle, lover, ball, american, english, rap, carz);
-                                        r.close();
+                                        r.question(`Is ${uText} a basketball fan ? (y/n)${c.r}: `, basketbal => {
+                                            console.log("");
+                                            generate(username, password, pet, vehicle, lover, ball, american, english, rap, carz, basketbal);
+                                            r.close();
+                                        })
                                     })
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    });
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
 });
 
 async function generate (username, password, pet, vehicle, lover, ball, carz, american, english, rap) {
@@ -66,6 +69,14 @@ async function generate (username, password, pet, vehicle, lover, ball, carz, am
     }
     if(ball === 'y') {
         fs.readFile(soccer, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
+    
+    if(basketbal === 'y') {
+        fs.readFile(basketball, function (err, data) {
             if (err) throw err;
             data = data.toString().split("\r\n");
             expand(data);

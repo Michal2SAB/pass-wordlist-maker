@@ -14,12 +14,15 @@ const c = {
     g: '\x1b[32m'
 };
 
-const cars = "./lists/cars.txt";
-const soccer = "./lists/soccer.txt";
-const football = "./lists/football.txt";
-const ukslang = "./lists/ukslang.txt";
-const rappers = "./lists/rappers.txt";
-const basketball = "./lists/basketball.txt";
+const listz = {
+    cars: "./lists/cars.txt", 
+    soccer: "./lists/soccer.txt", 
+    football: "./lists/football.txt",
+    ukslang: "./lists/ukslang.txt",
+    rappers: "./lists/rappers.txt", 
+    basketball: "./lists/basketball.txt",
+    nerd: "./lists/anime.txt"
+};
 
 r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     console.log(c.c);
@@ -42,9 +45,12 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
                                     console.log(c.c);
                                     r.question(`Is ${uText} a car lover ? (y/n)${c.r}: `, carz => {
                                         r.question(`Is ${uText} a basketball fan ? (y/n)${c.r}: `, basketbal => {
-                                            console.log("");
-                                            generate(username, password, pet, vehicle, lover, ball, american, english, rap, carz, basketbal);
-                                            r.close();
+                                            console.log(c.c);
+                                            r.question(`Is ${uText} a nerd/nolife or anime fan ? (y/n)${c.r}: `, anime => {
+                                                console.log("");
+                                                generate(username, password, pet, vehicle, lover, ball, american, english, rap, carz, basketbal, anime);
+                                                r.close();
+                                            })
                                         })
                                     })
                                 })
@@ -57,7 +63,7 @@ r.question(`${c.c}Target's name/username${c.r}: ${c.y}`, username => {
     })
 });
 
-async function generate (username, password, pet, vehicle, lover, ball, carz, american, english, rap) {
+async function generate (username, password, pet, vehicle, lover, ball, carz, american, english, rap, basketbal, anime) {
     for (x of arguments) if(x != '') expand(x);
 
     if(carz === 'y') {
@@ -104,7 +110,14 @@ async function generate (username, password, pet, vehicle, lover, ball, carz, am
             expand(data);
         });
     }
-
+    
+    if(anime === 'y') {
+        fs.readFile(listz.nerd, function (err, data) {
+            if (err) throw err;
+            data = data.toString().split("\r\n");
+            expand(data);
+        });
+    }
 };
 
 function expand(words) {
